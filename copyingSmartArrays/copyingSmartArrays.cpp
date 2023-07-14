@@ -13,6 +13,8 @@ public:
 
     smart_array& operator=(const smart_array& other);
 
+    smart_array(const smart_array& other);
+
     void add_element(int element);
 
     int get_element(int index);
@@ -42,7 +44,7 @@ int main() {
     return 0;
 }
 
-smart_array::smart_array(int s) : size(s), capacity(s) {
+smart_array::smart_array(int s) : size(0), capacity(s) {
     data = new int[capacity];
 }
 smart_array& smart_array::operator=(const smart_array& other) {
@@ -55,6 +57,12 @@ smart_array& smart_array::operator=(const smart_array& other) {
     return *this;
 }
 
+smart_array::smart_array(const smart_array& other) {
+        data = new int[other.capacity];
+        size = other.size;
+        capacity = other.capacity;
+  
+}
 void smart_array::add_element(int element) {
     if (size == capacity) {
         throw std::out_of_range("Array is full");
