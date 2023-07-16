@@ -30,13 +30,15 @@ int main() {
         arr.add_element(1);
         arr.add_element(4);
         arr.add_element(155);
+        std::cout << arr.get_element(1) << std::endl;
 
-    smart_array new_array(2);
-    //new_array = new_array;
+        smart_array new_array(2);
+    
         new_array.add_element(44);
         new_array.add_element(34);
-
+        std::cout << new_array.get_element(1) << std::endl;
         arr = new_array;
+        std::cout << arr.get_element(1) << std::endl;
     }
     catch (const std::exception& ex) {
         std::cout << ex.what() << std::endl;
@@ -53,6 +55,9 @@ smart_array& smart_array::operator=(const smart_array& other) {
         data = new int[other.capacity];
         size = other.size;
         capacity = other.capacity;
+        for (int i = 0; i  < size; i++){
+            data[i] = other.data[i];
+        }
     }
     return *this;
 }
@@ -61,6 +66,9 @@ smart_array::smart_array(const smart_array& other) {
         data = new int[other.capacity];
         size = other.size;
         capacity = other.capacity;
+        for (int i = 0; i < size; i++) {
+            data[i] = other.data[i];
+        }
   
 }
 void smart_array::add_element(int element) {
